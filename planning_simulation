@@ -1,0 +1,47 @@
+#!/usr/bin/bash
+
+# usage: planning_simulation kashiwanoha_all
+
+VEHICLE_MODEL="lexus"
+SENSOR_MODEL="aip_xx1"
+
+map_path=$1
+
+if [ $2 ]; then
+    # xx1
+    if [ "$2" == "lexus" ]; then
+        VEHICLE_MODEL="lexus"
+        SENSOR_MODEL="aip_xx1"
+    elif [ "$2" == "jpntaxi" ]; then
+        VEHICLE_MODEL="jpntaxi"
+        SENSOR_MODEL="aip_xx1"
+    # x1
+    elif [ "$2" = "eva" ]; then
+        VEHICLE_MODEL="ymc_golfcart_proto2"
+        SENSOR_MODEL="aip_x1"
+    # x2
+    elif [ "$2" = "gsm8" ]; then
+        VEHICLE_MODEL="gsm8"
+        SENSOR_MODEL="aip_x2"
+    elif [ "$2" = "j6_gen1" ]; then
+        VEHICLE_MODEL="j6_gen1"
+        SENSOR_MODEL="aip_x2"
+    # s1
+    elif [ "$2" = "crow" ]; then
+        VEHICLE_MODEL="crow"
+        SENSOR_MODEL="crow_sensor"
+    # tutorial
+    elif [ "$2" = "sample_vehicle" ]; then
+        VEHICLE_MODEL="sample_vehicle"
+        SENSOR_MODEL="sample_sensor_kit"
+    # awsim
+    elif [ "$2" = "awsim" ]; then
+        VEHICLE_MODEL="sample_vehicle"
+        SENSOR_MODEL="awsim_sensor_kit"
+    fi
+    if [ "$3" ]; then
+        SENSOR_MODEL=$3
+    fi
+fi
+
+ros2 launch autoware_launch planning_simulator.launch.xml map_path:=$HOME/workspace/maps/${map_path} vehicle_model:=$VEHICLE_MODEL sensor_model:=$SENSOR_MODEL rviz_config:="$(ros2 pkg prefix --share autoware_launch)/rviz/${map_path}.rviz"
