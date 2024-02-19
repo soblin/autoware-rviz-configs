@@ -5,19 +5,24 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Sensing1/LiDAR1/ConcatenatePointCloud1/Autocompute Value Bounds1
-        - /Planning1
-        - /Planning1/ScenarioPlanning1
-        - /Planning1/ScenarioPlanning1/LaneDriving1
-        - /Planning1/ScenarioPlanning1/LaneDriving1/BehaviorPlanning1
-        - /Planning1/ScenarioPlanning1/LaneDriving1/BehaviorPlanning1/DebugMarker1
-      Splitter Ratio: 0.4922480583190918
-    Tree Height: 897
+      Splitter Ratio: 0.557669460773468
+    Tree Height: 1414
   - Class: rviz_common/Selection
     Name: Selection
   - Class: rviz_common/Tool Properties
     Expanded:
-      - /2D Dummy Car1
+      - /2D Checkpoint Pose1
+      - /2D AppendCheckpoint1
+      - /2D AppendGoal1
+      - /2D Dummy Bicycle1
       - /2D Dummy Bus1
+      - /2D Dummy Car1
+      - /2D Dummy Pedestrian1
+      - /2D Dummy Unknown1
+      - /Delete All Objects1
+      - /Operation View1
+      - /Bird Eye View1
+      - /Third Person View1
     Name: Tool Properties
     Splitter Ratio: 0.5886790156364441
   - Class: rviz_common/Views
@@ -33,6 +38,8 @@ Panels:
     Name: RTCManagerPanel
   - Class: rviz_plugins::TrafficLightPublishPanel
     Name: TrafficLightPublishPanel
+  - Class: rviz_plugin::LoggingLevelConfigureRvizPlugin
+    Name: LoggingLevelConfigureRvizPlugin
 Visualization Manager:
   Class: ""
   Displays:
@@ -266,14 +273,14 @@ Visualization Manager:
               Value: true
               Wave Color: 255; 255; 255
               Wave Velocity: 40
-            - Class: awf_2d_overlay_vehicle/SignalDisplay
+            - Class: autoware_overlay_rviz_plugin/SignalDisplay
               Enabled: true
               Gear Topic Test: /vehicle/status/gear_status
               Hazard Lights Topic: /vehicle/status/hazard_lights_status
               Height: 175
               Left: 10
               Name: SignalDisplay
-              Signal Color: 94; 130; 255
+              Signal Color: 0; 230; 120
               Speed Limit Topic: /planning/scenario_planning/current_max_velocity
               Speed Topic: /vehicle/status/velocity_status
               Steering Topic: /vehicle/status/steering_status
@@ -342,38 +349,38 @@ Visualization Manager:
           Enabled: true
           Name: Lanelet2VectorMap
           Namespaces:
-            center_lane_line: false
-            center_line_arrows: false
-            crosswalk_lanelet_id: true
+            center_lane_line: true
+            center_line_arrows: true
+            crosswalk_lanelet_id: false
             crosswalk_lanelets: true
-            curbstone: true
+            curbstone: false
             hatched_road_markings_area: false
-            hatched_road_markings_bound: true
-            intersection_area: false
-            lane_start_bound: false
+            hatched_road_markings_bound: false
+            intersection_area: true
+            lane_start_bound: true
             lanelet direction: true
-            lanelet_id: false
+            lanelet_id: true
             left_lane_bound: true
-            no_parking_area: true
-            no_stopping_area: true
-            parking_lots: true
-            partitions: true
-            pedestrian_marking: true
+            no_parking_area: false
+            no_stopping_area: false
+            parking_lots: false
+            partitions: false
+            pedestrian_polygon_marking: false
             right_lane_bound: true
             road_lanelets: false
             shoulder_center_lane_line: false
-            shoulder_center_line_arrows: true
-            shoulder_lane_start_bound: true
-            shoulder_lanelet direction: true
+            shoulder_center_line_arrows: false
+            shoulder_lane_start_bound: false
+            shoulder_lanelet direction: false
             shoulder_left_lane_bound: true
             shoulder_right_lane_bound: true
             shoulder_road_lanelets: false
             stop_lines: true
             traffic_light: true
-            traffic_light_id: false
-            traffic_light_reg_elem_id: false
+            traffic_light_id: true
+            traffic_light_reg_elem_id: true
             traffic_light_triangle: true
-            walkway_lanelets: true
+            walkway_lanelets: false
           Topic:
             Depth: 5
             Durability Policy: Transient Local
@@ -711,7 +718,7 @@ Visualization Manager:
               Use Fixed Frame: true
               Use rainbow: true
               Value: true
-          Enabled: false
+          Enabled: true
           Name: Segmentation
         - Class: rviz_common/Group
           Displays:
@@ -966,12 +973,7 @@ Visualization Manager:
               Enabled: true
               Name: RouteArea
               Namespaces:
-                end_lanelets: true
-                goal_lanelets: true
-                lane_start_bound: false
-                left_lane_bound: false
-                right_lane_bound: false
-                route_lanelets: true
+                {}
               Topic:
                 Depth: 5
                 Durability Policy: Transient Local
@@ -1019,10 +1021,10 @@ Visualization Manager:
                 Alpha: 1
                 Color: 230; 230; 50
                 Offset from BaseLink: 0
-                Rear Overhang: 1.100000023841858
+                Rear Overhang: 1.0299999713897705
                 Value: false
-                Vehicle Length: 4.889999866485596
-                Vehicle Width: 1.8960000276565552
+                Vehicle Length: 4.769999980926514
+                Vehicle Width: 1.8300000429153442
               View Path:
                 Alpha: 0.9990000128746033
                 Color: 0; 0; 0
@@ -1073,10 +1075,10 @@ Visualization Manager:
                         Alpha: 1
                         Color: 230; 230; 50
                         Offset from BaseLink: 0
-                        Rear Overhang: 1.100000023841858
+                        Rear Overhang: 1.0299999713897705
                         Value: false
-                        Vehicle Length: 4.889999866485596
-                        Vehicle Width: 1.8960000276565552
+                        Vehicle Length: 4.769999980926514
+                        Vehicle Width: 1.8300000429153442
                       View Path:
                         Alpha: 0.4000000059604645
                         Color: 0; 0; 0
@@ -1423,10 +1425,10 @@ Visualization Manager:
                         Alpha: 1
                         Color: 230; 230; 50
                         Offset from BaseLink: 0
-                        Rear Overhang: 1.100000023841858
+                        Rear Overhang: 1.0299999713897705
                         Value: false
-                        Vehicle Length: 4.889999866485596
-                        Vehicle Width: 1.8960000276565552
+                        Vehicle Length: 4.769999980926514
+                        Vehicle Width: 1.8300000429153442
                       View Path:
                         Alpha: 0.30000001192092896
                         Color: 115; 210; 22
@@ -1523,10 +1525,10 @@ Visualization Manager:
                         Alpha: 1
                         Color: 230; 230; 50
                         Offset from BaseLink: 0
-                        Rear Overhang: 1.100000023841858
+                        Rear Overhang: 1.0299999713897705
                         Value: false
-                        Vehicle Length: 4.889999866485596
-                        Vehicle Width: 1.8960000276565552
+                        Vehicle Length: 4.769999980926514
+                        Vehicle Width: 1.8300000429153442
                       View Path:
                         Alpha: 0.30000001192092896
                         Color: 115; 210; 22
@@ -1573,10 +1575,10 @@ Visualization Manager:
                         Alpha: 1
                         Color: 230; 230; 50
                         Offset from BaseLink: 0
-                        Rear Overhang: 1.100000023841858
+                        Rear Overhang: 1.0299999713897705
                         Value: false
-                        Vehicle Length: 4.889999866485596
-                        Vehicle Width: 1.8960000276565552
+                        Vehicle Length: 4.769999980926514
+                        Vehicle Width: 1.8300000429153442
                       View Path:
                         Alpha: 0.30000001192092896
                         Color: 115; 210; 22
@@ -1723,10 +1725,10 @@ Visualization Manager:
                         Alpha: 1
                         Color: 230; 230; 50
                         Offset from BaseLink: 0
-                        Rear Overhang: 1.100000023841858
+                        Rear Overhang: 1.0299999713897705
                         Value: false
-                        Vehicle Length: 4.889999866485596
-                        Vehicle Width: 1.8960000276565552
+                        Vehicle Length: 4.769999980926514
+                        Vehicle Width: 1.8300000429153442
                       View Path:
                         Alpha: 0.30000001192092896
                         Color: 115; 210; 22
@@ -1773,10 +1775,10 @@ Visualization Manager:
                         Alpha: 1
                         Color: 230; 230; 50
                         Offset from BaseLink: 0
-                        Rear Overhang: 1.100000023841858
+                        Rear Overhang: 1.0299999713897705
                         Value: false
-                        Vehicle Length: 4.889999866485596
-                        Vehicle Width: 1.8960000276565552
+                        Vehicle Length: 4.769999980926514
+                        Vehicle Width: 1.8300000429153442
                       View Path:
                         Alpha: 0.30000001192092896
                         Color: 115; 210; 22
@@ -1823,10 +1825,10 @@ Visualization Manager:
                         Alpha: 1
                         Color: 230; 230; 50
                         Offset from BaseLink: 0
-                        Rear Overhang: 1.100000023841858
+                        Rear Overhang: 1.0299999713897705
                         Value: false
-                        Vehicle Length: 4.889999866485596
-                        Vehicle Width: 1.8960000276565552
+                        Vehicle Length: 4.769999980926514
+                        Vehicle Width: 1.8300000429153442
                       View Path:
                         Alpha: 0.30000001192092896
                         Color: 115; 210; 22
@@ -2183,24 +2185,17 @@ Visualization Manager:
                             Value: /planning/scenario_planning/lane_driving/behavior_planning/behavior_velocity_planner/debug/crosswalk
                           Value: false
                         - Class: rviz_default_plugins/MarkerArray
-                          Enabled: true
+                          Enabled: false
                           Name: Intersection
                           Namespaces:
-                            adjacent_area: true
-                            attention_area: true
-                            ego_lane: true
-                            first_attention_area: true
-                            first_pass_judge_wall_pose_line: true
-                            occlusion_attention_area: true
-                            stuck_vehicle_detect_area: true
-                            yield_stuck_detect_area: true
+                            {}
                           Topic:
                             Depth: 5
                             Durability Policy: Volatile
                             History Policy: Keep Last
                             Reliability Policy: Reliable
                             Value: /planning/scenario_planning/lane_driving/behavior_planning/behavior_velocity_planner/debug/intersection
-                          Value: true
+                          Value: false
                         - Class: rviz_default_plugins/MarkerArray
                           Enabled: false
                           Name: Blind Spot
@@ -2441,7 +2436,7 @@ Visualization Manager:
                             Reliability Policy: Reliable
                             Value: /planning/scenario_planning/lane_driving/behavior_planning/behavior_velocity_planner/debug/dynamic_obstacle_stop
                           Value: false
-                      Enabled: true
+                      Enabled: false
                       Name: DebugMarker
                     - Class: rviz_common/Group
                       Displays:
@@ -3014,44 +3009,14 @@ Visualization Manager:
                 Debug:
                   Control: true
                   Localization:
-                    EKFPoseHistory: true
-                    NDT pointclouds: true
-                    NDTLoadedPCDMap: true
-                    NDTPoseHistory: true
+                    "": true
                     Value: true
                   Map: true
                   Perception:
-                    CameraLidarFusion(purple): true
-                    Centerpoint(red1): true
-                    CenterpointROIFusion(red2): true
-                    CenterpointValidator(red3): true
-                    Detection(yellow): true
-                    DetectionByTracker(orange): true
-                    PointPainting(light_green1): true
-                    PointPaintingROIFusion(light_green2): true
-                    PointPaintingValidator(light_green3): true
-                    Prediction(light_blue): true
-                    RadarFarObjects(white): true
-                    Tracking(green): true
+                    "": true
                     Value: true
                   Planning:
-                    Objects Of Interest:
-                      AvoidanceByLCLeft: true
-                      AvoidanceByLCRight: true
-                      AvoidanceLeft: true
-                      AvoidanceRight: true
-                      BlindSpot: true
-                      Crosswalk: true
-                      DetectionArea: true
-                      GoalPlanner: true
-                      Intersection: true
-                      LaneChangeLeft: true
-                      LaneChangeRight: true
-                      NoStoppingArea: true
-                      StartPlanner: true
-                      TrafficLight: true
-                      Value: true
-                    StringStampedOverlayDisplay: true
+                    "": true
                     Value: true
                   Sensing:
                     ConcatenatePointCloud: true
@@ -4282,7 +4247,7 @@ Visualization Manager:
       Name: Debug
   Enabled: true
   Global Options:
-    Background Color: 0; 0; 45
+    Background Color: 0; 0; 38
     Fixed Frame: map
     Frame Rate: 30
   Name: root
@@ -4318,31 +4283,37 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /rviz/routing/rough_goal
+    - Class: rviz_plugins/MissionCheckpointTool
+      Pose Topic: mission_checkpoint
+      Theta std deviation: 0.2617993950843811
+      X std deviation: 0.5
+      Y std deviation: 0.5
+      Z position: 0
+    - Class: rviz_plugins/AutowareAutomaticCheckpointTool
+      Pose Topic: ~/automatic_goal/checkpoint
+      Theta std deviation: 0.2617993950843811
+      X std deviation: 0.5
+      Y std deviation: 0.5
+      Z position: 0
+    - Class: rviz_plugins/AutowareAutomaticGoalTool
+      Pose Topic: ~/automatic_goal/goal
+      Theta std deviation: 0.2617993950843811
+      X std deviation: 0.5
+      Y std deviation: 0.5
+      Z position: 0
     - Acceleration: 0
-      Class: rviz_plugins/PedestrianInitialPoseTool
+      Class: rviz_plugins/BikeInitialPoseTool
+      H vehicle height: 1
       Interactive: false
+      L vehicle length: 1.5
       Max velocity: 33.29999923706055
       Min velocity: -33.29999923706055
       Pose Topic: /simulation/dummy_perception_publisher/object_info
       Target Frame: <Fixed Frame>
       Theta std deviation: 0.0872664600610733
-      Velocity: 0
-      X std deviation: 0.029999999329447746
-      Y std deviation: 0.029999999329447746
-      Z position: 1
-      Z std deviation: 0.029999999329447746
-    - Acceleration: 0
-      Class: rviz_plugins/CarInitialPoseTool
-      H vehicle height: 2
-      Interactive: false
-      L vehicle length: 4
-      Max velocity: 33.29999923706055
-      Min velocity: -33.29999923706055
-      Pose Topic: /simulation/dummy_perception_publisher/object_info
-      Target Frame: <Fixed Frame>
-      Theta std deviation: 0.0872664600610733
-      Velocity: 8
-      W vehicle width: 1.7999999523162842
+      Type: BICYCLE
+      Velocity: 6
+      W vehicle width: 0.5
       X std deviation: 0.029999999329447746
       Y std deviation: 0.029999999329447746
       Z position: 0
@@ -4363,21 +4334,75 @@ Visualization Manager:
       Y std deviation: 0.029999999329447746
       Z position: 0
       Z std deviation: 0.029999999329447746
-    - Class: rviz_plugins/MissionCheckpointTool
-      Pose Topic: /planning/mission_planning/checkpoint
-      Theta std deviation: 0.2617993950843811
-      X std deviation: 0.5
-      Y std deviation: 0.5
+    - Acceleration: 0
+      Class: rviz_plugins/CarInitialPoseTool
+      H vehicle height: 2
+      Interactive: false
+      L vehicle length: 4
+      Max velocity: 33.29999923706055
+      Min velocity: -33.29999923706055
+      Pose Topic: /simulation/dummy_perception_publisher/object_info
+      Target Frame: <Fixed Frame>
+      Theta std deviation: 0.0872664600610733
+      Velocity: 8
+      W vehicle width: 1.7999999523162842
+      X std deviation: 0.029999999329447746
+      Y std deviation: 0.029999999329447746
       Z position: 0
+      Z std deviation: 0.029999999329447746
+    - Acceleration: 0
+      Class: rviz_plugins/PedestrianInitialPoseTool
+      Interactive: false
+      Max velocity: 33.29999923706055
+      Min velocity: -33.29999923706055
+      Pose Topic: /simulation/dummy_perception_publisher/object_info
+      Target Frame: <Fixed Frame>
+      Theta std deviation: 0.0872664600610733
+      Velocity: 0
+      X std deviation: 0.029999999329447746
+      Y std deviation: 0.029999999329447746
+      Z position: 0
+      Z std deviation: 0.029999999329447746
+    - Acceleration: 0
+      Class: rviz_plugins/UnknownInitialPoseTool
+      Interactive: false
+      Max velocity: 33.29999923706055
+      Min velocity: -33.29999923706055
+      Pose Topic: /simulation/dummy_perception_publisher/object_info
+      Target Frame: <Fixed Frame>
+      Theta std deviation: 0.0872664600610733
+      Velocity: 0
+      X std deviation: 0.029999999329447746
+      Y std deviation: 0.029999999329447746
+      Z position: 0
+      Z std deviation: 0.029999999329447746
     - Class: rviz_plugins/DeleteAllObjectsTool
       Pose Topic: /simulation/dummy_perception_publisher/object_info
+    - Boost Property: 0.5
+      Class: foa_viewer_plugin/OperationViewTool
+      Fallback ViewController: foa_viewer_plugin/OperationView
+      Fly Mode: false
+      Left Hand Mode: false
+      Step Length: 0.10000000149011612
+    - Boost Property: 0.5
+      Class: tier4_camera_view_rviz_plugin/BirdEyeViewTool
+      Fallback ViewController: tier4_camera_view_rviz_plugin/BirdEyeView
+      Fly Mode: false
+      Left Hand Mode: false
+      Step Length: 0.10000000149011612
+    - Boost Property: 0.5
+      Class: tier4_camera_view_rviz_plugin/ThirdPersonViewTool
+      Fallback ViewController: tier4_camera_view_rviz_plugin/ThirdPersonView
+      Fly Mode: false
+      Left Hand Mode: false
+      Step Length: 0.10000000149011612
   Transformation:
     Current:
       Class: rviz_default_plugins/TF
   Value: true
   Views:
     Current:
-      Angle: 2.1499996185302734
+      Angle: 0
       Class: rviz_default_plugins/TopDownOrtho
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
@@ -4387,11 +4412,11 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Scale: 12.791986465454102
+      Scale: 10
       Target Frame: viewer
       Value: TopDownOrtho (rviz_default_plugins)
-      X: -569.9283447265625
-      Y: -641.0511474609375
+      X: 0
+      Y: 0
     Saved:
       - Class: rviz_default_plugins/ThirdPersonFollower
         Distance: 18
@@ -4435,12 +4460,14 @@ Window Geometry:
     collapsed: false
   Displays:
     collapsed: false
-  Height: 1093
+  Height: 1565
   Hide Left Dock: false
   Hide Right Dock: false
+  LoggingLevelConfigureRvizPlugin:
+    collapsed: false
   PointcloudOnCamera:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd000000040000000000000206000003e3fc020000000efb0000001200530065006c0065006300740069006f006e00000001e10000009b0000006b00fffffffb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afc00000044000003e3000001b501000020fa000000010100000002fb000000100044006900730070006c0061007900730100000000000002d50000015a00fffffffb00000024004100750074006f00770061007200650053007400610074006500500061006e0065006c0100000000ffffffff0000020600fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000c00430061006d0065007200610100000682000000eb0000000000000000fb0000000a0049006d0061006700650100000505000002680000000000000000fb0000002c0049006e0069007400690061006c0050006f007300650042007500740074006f006e00500061006e0065006c000000068f000000de0000000000000000fb0000002c0049006e0069007400690061006c0050006f007300650042007500740074006f006e00500061006e0065006c000000068f000000de0000000000000000fb00000030005200650063006f0067006e006900740069006f006e0052006500730075006c0074004f006e0049006d00610067006500000002910000006d0000002c00fffffffb0000002a004100750074006f0077006100720065004400610074006500540069006d006500500061006e0065006c00000002df000000c50000004600fffffffb000000240050006f0069006e00740063006c006f00750064004f006e00430061006d006500720061000000038b0000009c0000002c00ffffff000000010000022d000003e3fc0200000003fc00000044000003e30000017d01000020fa000000000100000004fb000000300054007200610066006600690063004c0069006700680074005000750062006c00690073006800500061006e0065006c0100000000ffffffff0000022d00fffffffb0000001e005200540043004d0061006e006100670065007200500061006e0065006c0100000000ffffffff0000018800fffffffb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000000ffffffff000000a400fffffffb0000000a0056006900650077007301000006210000015f0000010200fffffffb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000e7a0000005afc0100000001fb0000000a00560069006500770073030000004e00000080000002e1000001970000000300000e7a0000005afc0100000002fb0000000800540069006d0065010000000000000e7a0000000000000000fb0000000800540069006d006501000000000000045000000000000000000000033f000003e300000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd00000004000000000000020e000005e8fc020000000efb0000001200530065006c0065006300740069006f006e00000001e10000009b0000006b00fffffffb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afc00000017000005e8000001b701000020fa000000000100000002fb00000024004100750074006f00770061007200650053007400610074006500500061006e0065006c0100000000ffffffff0000020e00fffffffb000000100044006900730070006c0061007900730100000000000002d50000015a00fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000c00430061006d0065007200610100000682000000eb0000000000000000fb0000000a0049006d0061006700650100000505000002680000000000000000fb0000002c0049006e0069007400690061006c0050006f007300650042007500740074006f006e00500061006e0065006c000000068f000000de0000000000000000fb0000002c0049006e0069007400690061006c0050006f007300650042007500740074006f006e00500061006e0065006c000000068f000000de0000000000000000fb00000030005200650063006f0067006e006900740069006f006e0052006500730075006c0074004f006e0049006d00610067006500000003cf000001110000002c00fffffffb0000002a004100750074006f0077006100720065004400610074006500540069006d006500500061006e0065006c00000004a5000000570000004600fffffffb000000240050006f0069006e00740063006c006f00750064004f006e00430061006d00650072006100000004f10000010e0000002c00ffffff00000001000002d8000005e8fc0200000003fc00000017000005e80000017d01000020fa000000030100000005fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000000ffffffff000000a400fffffffb0000000a0056006900650077007301000008d10000015f0000010200fffffffb000000300054007200610066006600690063004c0069006700680074005000750062006c00690073006800500061006e0065006c0100000000ffffffff0000022d00fffffffb0000001e005200540043004d0061006e006100670065007200500061006e0065006c0100000000ffffffff0000018800fffffffb0000003e004c006f006700670069006e0067004c006500760065006c0043006f006e006600690067007500720065005200760069007a0050006c007500670069006e0100000000ffffffff0000012f00fffffffb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000e7a0000005afc0100000001fb0000000a00560069006500770073030000004e00000080000002e1000001970000000300000e7a0000005afc0100000002fb0000000800540069006d0065010000000000000e7a0000000000000000fb0000000800540069006d006501000000000000045000000000000000000000053c000005e800000004000000040000000800000008fc0000000100000001000000010000000a0054006f006f006c00730300000000ffffffff0000000000000000
   RTCManagerPanel:
     collapsed: false
   RecognitionResultOnImage:
@@ -4453,6 +4480,6 @@ Window Geometry:
     collapsed: false
   Views:
     collapsed: false
-  Width: 1920
-  X: 0
-  Y: 0
+  Width: 2813
+  X: 67
+  Y: 27
