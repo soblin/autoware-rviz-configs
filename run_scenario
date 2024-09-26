@@ -36,7 +36,7 @@ if [ $1 ]; then
     echo "vehicle model is "$VEHICLE_MODEL
     echo "sensor model is "$SENSOR_MODEL
 
-    ros2 launch scenario_test_runner scenario_test_runner.launch.py scenario:=$1 sensor_model:=$SENSOR_MODEL vehicle_model:=$VEHICLE_MODEL record:=false initialize_duration:=60 architecture_type:=awf/universe
+    ros2 launch scenario_test_runner scenario_test_runner.launch.py scenario:=$1 sensor_model:=$SENSOR_MODEL vehicle_model:=$VEHICLE_MODEL record:=false initialize_duration:=60 architecture_type:=awf/universe/20230906
 
 else
     echo "No scenario file is given."

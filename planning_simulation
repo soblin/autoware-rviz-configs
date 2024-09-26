@@ -44,4 +44,4 @@ if [ $2 ]; then
     fi
 fi
 
-ros2 launch autoware_launch planning_simulator.launch.xml map_path:=$HOME/workspace/maps/${map_path} vehicle_model:=$VEHICLE_MODEL sensor_model:=$SENSOR_MODEL rviz_config:="$(ros2 pkg prefix --share autoware_launch)/rviz/${map_path}.rviz"
+ros2 launch autoware_launch planning_simulator.launch.xml map_path:=$HOME/workspace/maps/${map_path} vehicle_model:=$VEHICLE_MODEL sensor_model:=$SENSOR_MODEL rviz_config:="$(ros2 pkg prefix --share autoware_launch)/rviz/${map_path}.rviz" use_sim_time:=true
